@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 杂志专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f1f3;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1e1e2a;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 杂志式横幅 */
+        .hero-magazine {
+            background: linear-gradient(145deg, #ffffff 0%, #f7f8fa 100%);
+            border: 1px solid #e6e8ec;
+            border-radius: 28px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 6px 12px -4px rgba(0, 0, 0, 0.02);
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .hero-magazine .badge {
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6f6f82;
+            background: #e9ebef;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            width: fit-content;
+            font-weight: 500;
+        }
+
+        .hero-magazine h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #1b1b2a;
+        }
+
+        .hero-magazine h1 span {
+            background: linear-gradient(130deg, #3d3d5c, #2b2b44);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-magazine .intro-line {
+            font-size: 1.1rem;
+            max-width: 680px;
+            color: #3a3a4e;
+            border-left: 3px solid #b0b8c9;
+            padding-left: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        /* 背景说明卡片 */
+        .backdrop-card {
+            background: #ffffff;
+            border: 1px solid #e2e5ea;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.8rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .backdrop-card:hover {
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05);
+        }
+
+        .backdrop-card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: #26263a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .backdrop-card h2::before {
+            content: "◈";
+            font-size: 1.2rem;
+            color: #8e95aa;
+            margin-right: 0.2rem;
+        }
+
+        .backdrop-card p {
+            margin-bottom: 1rem;
+            color: #323248;
+        }
+
+        .backdrop-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 三段式自然介绍：卡片网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            border: 1px solid #e6e8ed;
+            border-radius: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            padding: 2rem 1.8rem 2.2rem;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-item .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .feature-item h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #1e1e2e;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #3f3f56;
+        }
+
+        /* 页尾访问提示 */
+        .footer-cta {
+            background: #ffffff;
+            border: 1px solid #e2e5ea;
+            border-radius: 28px;
+            box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.04);
+            padding: 2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .footer-cta p {
+            font-size: 1rem;
+            color: #2e2e44;
+            margin-bottom: 0.4rem;
+            max-width: 700px;
+        }
+
+        .footer-cta a {
+            color: #2b2b50;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid #b9c0d0;
+            transition: border-color 0.2s, color 0.2s;
+            padding-bottom: 1px;
+        }
+
+        .footer-cta a:hover {
+            color: #1a1a30;
+            border-bottom-color: #7b85a0;
+        }
+
+        .footer-note {
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
+            color: #6b6b80;
+            letter-spacing: 0.01em;
+        }
+
+        /* FAQ 摘要（极简） */
+        .faq-mini {
+            background: #f8f9fc;
+            border: 1px solid #e2e5ec;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .faq-mini h4 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #2b2b42;
+        }
+
+        .faq-mini .qa {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-mini .qa:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-mini .q {
+            font-weight: 500;
+            color: #28283d;
+        }
+
+        .faq-mini .a {
+            color: #3f3f58;
+            font-size: 0.95rem;
+            padding-left: 0.4rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .hero-magazine h1 {
+                font-size: 2.2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero-magazine {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-magazine h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-magazine .intro-line {
+                font-size: 0.95rem;
+                padding-left: 0.8rem;
+            }
+
+            .backdrop-card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .feature-item {
+                padding: 1.6rem 1.4rem;
+            }
+
+            .footer-cta {
+                padding: 1.6rem 1.4rem;
+            }
+
+            .faq-mini {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        /* 辅助分隔 */
+        .hr-soft {
+            height: 1px;
+            background: #dfe2e9;
+            margin: 2rem 0 1.2rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 杂志横幅 -->
+    <header class="hero-magazine">
+        <div class="badge">专题 · 体验与设计</div>
+        <h1><span>爱游戏</span> · 不止于娱乐</h1>
+        <div class="intro-line">
+            数字互动早已超越简单的消遣，它成为叙事、社交与创造的融合载体。<br>
+            从核心机制到美学表达，每一款作品都折射出独特的文化语境。
+        </div>
+    </header>
+
+    <!-- 背景说明：从关键词背后的主题展开 -->
+    <section class="backdrop-card">
+        <h2>缘起 · 游艺之间</h2>
+        <p>
+            “爱游戏”所指向的，不仅是对某一类型的偏好，更是一种对交互媒介的深度关注。
+            从早期像素风格的实验性作品，到如今融合电影化叙事、开放世界与程序生成的复合形态，
+            游戏正以惊人的速度迭代自身语法。每一次操作反馈、每一段环境叙事，
+            都在构建一种独特的“参与式阅读”——玩家既是观众，也是共作者。
+        </p>
+        <p>
+            这一领域的研究者常提到“心流”与“能动性”两个关键词：前者关乎节奏与沉浸，
+            后者则指向选择与意义。正是在这两者的张力之间，
+            游戏才得以区别于其他娱乐形式，成为一种值得反复审视的艺术载体。
+            而<a href="https://sitem-igame.com" style="color:#2d2d4a; text-decoration: none; border-bottom: 1.5px solid #b5bccf; font-weight: 500;">爱游戏</a>这个语汇本身，也承载着对上述复杂性的包容——它鼓励我们以更开阔的视角，
+            重新理解屏幕内外的创造力。
+        </p>
+    </section>
+
+    <!-- 三段自然介绍：卡片区块 -->
+    <div class="feature-grid">
+        <article class="feature-item">
+            <span class="icon">🎮</span>
+            <h3>机制与叙事</h3>
+            <p>优秀的游戏往往在规则层与故事层之间建立巧妙映射。角色的成长曲线、资源的稀缺分配、环境的动态反馈……这些系统共同编织出超越线性文本的叙事可能，让每一次游玩都成为独特的文本生产。</p>
+        </article>
+        <article class="feature-item">
+            <span class="icon">🌐</span>
+            <h3>社交与共同体</h3>
+            <p>从本地联机到万人同服，游戏空间逐渐演变为新型社交场所。协作、竞争、分享攻略与创作模组，玩家在虚拟世界中建立真实的情感连接，形成具有内部语言与规范的文化群落。</p>
+        </article>
+        <article class="feature-item">
+            <span class="icon">🎨</span>
+            <h3>美学与实验</h3>
+            <p>独立游戏与3A大作在视觉光谱的两端各自探索：前者常以低多边形、手绘风格或抽象界面挑战主流审美；后者则借助实时渲染与光影技术逼近电影级画质。两者共同拓展了“可玩图像”的边界。</p>
+        </article>
+    </div>
+
+    <!-- FAQ 摘要（杂志式信息补充） -->
+    <div class="faq-mini">
+        <h4>▸ 常见视角摘要</h4>
+        <div class="qa">
+            <span class="q">问：为什么说游戏是一种“复合媒介”？</span>
+            <span class="a">因为它同时调用视觉、听觉、动觉与决策系统，并允许使用者通过操作改变内容进程，这种反馈循环是电影或书籍无法直接提供的。</span>
+        </div>
+        <div class="qa">
+            <span class="q">问：“爱游戏”更偏向玩家还是研究者？</span>
+            <span class="a">两者并不冲突。深入理解一款作品往往需要同样程度的感性体验与理性拆解；这个短语更接近一种态度——对交互设计的饱满好奇。</span>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <footer class="footer-cta">
+        <p>
+            如果你对上述视角产生共鸣，并希望进一步浏览相关作品与讨论，
+            可以前往 <a href="https://sitem-igame.com">爱游戏</a> 查阅更多专题内容、测评与开发访谈。
+        </p>
+        <div class="footer-note">
+            基于开放讨论 · 持续更新
+        </div>
+    </footer>
+
+    <!-- 极细分割线，平衡视觉 -->
+    <div class="hr-soft"></div>
+
+    <!-- 版权/信息行（极简） -->
+    <div style="font-size:0.75rem; color:#8a8a9e; text-align:center; padding:1rem 0 0.2rem; letter-spacing:0.03em;">
+        杂志式专题 · 2025
+    </div>
+
+</div>
+</body>
+</html>
